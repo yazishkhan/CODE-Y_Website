@@ -1,0 +1,74 @@
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Animated classes */
+.animated {
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.fade-in {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-delay: 0.2s;
+}
+
+.slide-left {
+    animation-name: slideInLeft;
+    animation-duration: 1s;
+    animation-delay: 0.4s;
+}
+
+.slide-right {
+    animation-name: slideInRight;
+    animation-duration: 1s;
+    animation-delay: 0.6s;
+}
+
+/* Home Page Specific Animations */
+#home-banner-container {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.banner-text h1, .banner-text p {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* About Page Animations */
+.about-section h2 {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.about-me-section, .about-website-section {
+    animation: slideInLeft 1s ease-out;
+    margin-bottom: 2rem;
+}
+
+/* Contact Page Animations */
+.contact-form {
+    animation: slideInRight 1s ease-out;
+}
+
+/* Coding Window Animations */
+.code-editor, .terminal-container {
+    animation: fadeIn 1.5s ease-in-out;
+}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block head_extra %}
+<style>
+    .about-container {
+        padding: 5% 10%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .about-section {
+        background-color: var(--primary-color);
+        padding: 4rem;
+        border-radius: 15px;
+        margin-bottom: 3rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        max-width: 900px;
+        text-align: left;
+    }
+
+    .about-section h2 {
+        font-size: 2.5rem;
+        border-bottom: 3px solid var(--secondary-color);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .about-section p, .about-section ul {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .social-links a {
+        color: var(--text-color);
+        margin-right: 1.5rem;
+        font-size: 2rem;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: var(--accent-color);
+        transform: scale(1.1);
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <div class="about-section slide-left">
+        <h2>About the Developer</h2>
+        <p>Hello! I'm Yazish Khan, a passionate developer with a knack for building dynamic and responsive web applications. This platform is a result of my dedication to creating a powerful and user-friendly online coding environment. I've leveraged my skills in front-end and back-end development to bring this idea to life.</p>
+        <p>You can connect with me and check out my other projects here:</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/yazish-khan/?originalSubdomain=in" target="_blank">LinkedIn</a>
+            <a href="https://github.com/yazishkhan" target="_blank">GitHub</a>
+        </div>
+    </div>
+    <div class="about-section slide-right">
+        <h2>About this Website</h2>
+        <p>CODEY is an online coding platform designed to be the central hub for our college coding fest. Its core functionality is to provide a seamless and interactive coding experience for participants. The platform's key features include:</p>
+        <ul>
+            <li>**Real-time Code Execution:** Powered by the Judge0 API, the platform allows you to compile and run code in over 7 different programming languages instantly.</li>
+            <li>**Interactive Terminal:** The output terminal is not just for displaying results; it also supports user input, making it possible to test programs that require dynamic parameters.</li>
+            <li>**Animated & Responsive UI:** The user interface is built with a focus on animation and a cool, modern design that is fully responsive on both desktop and mobile devices.</li>
+            <li>**Code Persistence:** Your last two code submissions are securely stored in a SQL database, allowing you to easily revisit and continue working on your previous attempts.</li>
+        </ul>
+        <p>This website is an embodiment of modern web development principles, combining a powerful backend with a stunning and intuitive frontend.</p>
+    </div>
+</div>
+{% endblock %}

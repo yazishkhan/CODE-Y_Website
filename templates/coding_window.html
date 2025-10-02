@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Code Window{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+
+<style>
+    .coding-container {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 80px); /* Adjust based on navbar height */
+        padding: 1rem;
+        background-color: var(--bg-color);
+    }
+
+    .code-area {
+        display: flex;
+        flex-grow: 1;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .editor-container {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .controls select {
+        padding: 0.5rem;
+        border-radius: 5px;
+        background-color: #333;
+        color: var(--text-color);
+        border: 1px solid #555;
+    }
+
+    #editor {
+        width: 100%;
+        height: 100%;
+    }
+
+    .CodeMirror {
+        height: 100%;
+        border: 1px solid #555;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .terminal-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .terminal-header {
+        font-weight: bold;
+        color: var(--secondary-color);
+        border-bottom: 2px solid #555;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    #terminal-output {
+        flex-grow: 1;
+        background-color: #000;
+        color: #0f0;
+        padding: 0.5rem;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        font-family: 'Consolas', 'Monaco', monospace;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+    }
+
+    .input-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-section label {
+        margin-bottom: 0.5rem;
+        color: var(--secondary-color);
+    }
+    
+    .interactive-input {
+        background-color: #000;
+        color: #0f0;
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-family: 'Consolas', 'Monaco', monospace;
+        width: 100%;
+    }
+    
+    #static-input {
+        background-color: #000;
+        color: #0f0;
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding: 0.5rem;
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    .history-container {
+        background-color: var(--primary-color);
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        margin-top: 2rem;
+        width: 100%;
+    }
+    
+    .history-container h3 {
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+    }
+    
+    .previous-code {
+        background-color: #333;
+        padding: 1rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+    
+    .previous-code:hover {
+        transform: translateY(-3px);
+    }
+    
+    @media (max-width: 768px) {
+        .code-area {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="coding-container">
+    <div class="code-area animated fade-in">
+        <div class="editor-container">
+            <div class="controls">
+                <select id="language-select">
+                    <option value="python">Python</option>
+                    <option value="c">C</option>
+                    <option value="cpp">C++</option>
+                    <option value="java">Java</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="go">Go</option>
+                    <option value="rust">Rust</option>
+                </select>
+                <button id="run-code-btn" class="btn">Run Code</button>
+            </div>
+            <textarea id="editor" name="editor"></textarea>
+        </div>
+        <div class="terminal-container">
+            <div class="terminal-header">Terminal</div>
+            <pre id="terminal-output"></pre>
+            <div class="input-section">
+                <label>Input:</label>
+                <div id="dynamic-input-container"></div>
+                <textarea id="static-input" rows="2" placeholder="Enter input here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    {% if previous_codes %}
+    <div class="history-container animated fade-in" style="animation-delay: 0.8s;">
+        <h3>Your Previous Code</h3>
+        {% for code in previous_codes %}
+        <div class="previous-code">
+            <p><strong>Language ID:</strong> {{ code.language_id }}</p>
+            <p><strong>Output:</strong> {{ code.output }}</p>
+            <p><strong>Submitted At:</strong> {{ code.timestamp.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/go/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/rust/rust.min.js"></script>
+<script src="{{ url_for('static', filename='js/coding_window.js') }}"></script>
+{% endblock %}
