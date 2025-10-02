@@ -8,7 +8,7 @@ import time
 import uuid
 
         # Import configuration for the api communication i need to call it for json
-from config import JUDGE0_API_KEY, DATABASE_NAME
+from config import JUDGE0_API_KEY
 
 app = Flask(__name__)
 
