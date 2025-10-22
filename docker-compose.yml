@@ -1,0 +1,27 @@
+services:
+
+  frontend:
+    build: .
+    container_name: Cody-py-server
+    networks:
+      - code-Y
+    ports:
+      - 5000:5000
+    depends_on:
+      - database
+    
+  database:
+    image: mysql
+    container_name: code-y-sql 
+    networks:
+      - code-Y
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 741593
+      MYSQL_DATABASE: coding_web
+    restart: always
+
+
+networks:
+  code-Y:
