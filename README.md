@@ -127,6 +127,7 @@ CODEY is a web-based online coding platform designed to provide a simple yet pow
 
     - Replace the `password` which we had set for mysql.
     - Replace the DB name `coding_web` if you have set the diff name for db otherwise not.
+    - ♦️ Note if you are using `Docker` you need to replace container-name instead of DB name `code-y-sql`. if you want to give other name then firstly change on compose file the hear.
     - Scroll down and put your Email ID were you want to receive feedback emails.
     ![image](https://github.com/user-attachments/assets/a1e01eef-6b02-405d-9ef1-97d39d45e233)
 
@@ -172,4 +173,33 @@ CODEY is a web-based online coding platform designed to provide a simple yet pow
     ````
 - Then BOOOOOM you will see the website running on.
 ------
+## ⚓ Using Docker
+##### Using docker the application is ready to run in just 1 commands.
+##### Step 1 : Requirements
+- Docker and Docker-Compose installed.
+##### Step 2 : Configuration
+- Just follow the Step 2 of `Installation and Setup`.
+- Otherwise, on need to follow anything.
+##### Step 3: running application.
+- Just past this command to build image and run it.
+    ````bash
+    docker compose up
+    ````
+    - Make sure you are in project directory.
+    - It automatically starts the container.
+- To stop the containers. 
+    ````bash
+    docker compose stop
+    ````
+    - It stops containers and application goes down
+- To start containers.
+    ````bash
+    docker compose start
+    ````
+- To delete the containers and images in single command
+    ````bash 
+    docker compose down
+    ````
+##### This is how Code-Y works With Docker.
+
 ## 🔴  CODE-Y The Ultimate Coding Platform by: [Yazish Khan](https://www.linkedin.com/in/yazish-khan-3634752b7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
