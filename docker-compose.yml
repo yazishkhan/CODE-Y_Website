@@ -9,7 +9,8 @@ services:
       - 5000:5000
     depends_on:
       - database
-    
+    restart: on-failure
+
   database:
     image: mysql
     container_name: code-y-sql 
