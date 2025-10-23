@@ -177,16 +177,21 @@ CODEY is a web-based online coding platform designed to provide a simple yet pow
 ##### Using docker the application is ready to run in just 1 commands.
 ##### Step 1 : Requirements
 - Docker and Docker-Compose installed.
+- First Clone the repository 
+    ````bash 
+    git clone https://github.com/yazishkhan/CODE-Y_Website.git
+    ````
 ##### Step 2 : Configuration
 - Just follow the Step 2 of `Installation and Setup`.
 - Otherwise, on need to follow anything.
 ##### Step 3: running application.
 - Just past this command to build image and run it.
+    - Make sure you are in project directory `CODE-Y_Website`.
     ````bash
     docker compose up
     ````
-    - Make sure you are in project directory.
-    - It automatically starts the container.
+    - It automatically builds image and starts the containers.
+    - Access the application using `http://127.0.0.1:5000`
 - To stop the containers. 
     ````bash
     docker compose stop
